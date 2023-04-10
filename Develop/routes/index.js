@@ -1,5 +1,8 @@
 const express = require('express')
-const note = require('./note')
+const notes = require('./notes')
 
 const app = express();
-app.use('/notes', note)
+app.use('/notes', notes)
+
+module.exports = app
+
