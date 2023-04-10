@@ -6,12 +6,18 @@ notes.get('/', (req, res) => {
 })
 
 notes.post('/', (req, res) => {
-    console.log(req.body.title)
     newNote = {
         title: req.body.title,
         text: req.body.text
     }
     readAndAppend(newNote, './db/db.json')
+
+    const response = {
+        status: 'success',
+        body: newNote,
+      };
+  
+      res.json(response);
 })
 
 module.exports = notes
