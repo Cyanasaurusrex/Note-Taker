@@ -8,20 +8,25 @@ notes.get('/', (req, res) => {
 })
 
 notes.post('/', (req, res) => {
-    newNote = {
-        title: req.body.title,
-        text: req.body.text,
-        id: uuidv4()
-    }
-    readAndAppend(newNote, './db/db.json')
+    const {title, text} = req.body
+    if (title && text) {
+        newNote = {
+            title: req.body.title,
+            text: req.body.text,
+            id: uuidv4()
+        }
+        readAndAppend(newNote, './db/db.json')
 
-    const response = {
-        status: 'success',
-        body: newNote,
-      };
-  
-      res.json(response);
-})
+        const response = {
+            status: 'success',
+            body: newNote,
+        };
+    
+        res.json(response);
+    } else {
+        res.json('Error in posting feedback');
+    }
+});
 
 notes.delete(`/:id`, (req, res) => {
     const id = req.params.id

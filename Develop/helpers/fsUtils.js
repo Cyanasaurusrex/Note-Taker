@@ -37,7 +37,6 @@ const readAndRemove = (id, file) => {
       console.error(err);
     } else {
       const parsedData = JSON.parse(data);
-      console.log(parsedData)
       for (i=0; i<parsedData.length; i++) {
         if (parsedData[i].id == id) {
           parsedData.splice(i, 1)
