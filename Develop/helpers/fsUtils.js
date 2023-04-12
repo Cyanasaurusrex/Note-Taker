@@ -1,5 +1,7 @@
+// static variables and requirements
 const fs = require('fs');
 const util = require('util');
+
 
 // Promise version of fs.readFile
 const readFromFile = util.promisify(fs.readFile);
@@ -19,6 +21,10 @@ const writeToFile = (destination, content) =>
  *  @param {string} file The path to the file you want to save to.
  *  @returns {void} Nothing
  */
+
+
+// reads the database file, appends the content into it, and returns the information
+// to the database
 const readAndAppend = (content, file) => {
   fs.readFile(file, 'utf8', (err, data) => {
     if (err) {
@@ -31,6 +37,9 @@ const readAndAppend = (content, file) => {
   });
 };
 
+
+// given an id of a note in the database, read the database and find the item
+// with a matching id, remove it, and write the remaining items to the database
 const readAndRemove = (id, file) => {
   fs.readFile(file, 'utf8', (err, data) => {
     if (err) {
@@ -47,4 +56,6 @@ const readAndRemove = (id, file) => {
   })
 }
 
+
+// exports methods for use in other files
 module.exports = { readFromFile, writeToFile, readAndAppend,readAndRemove };
